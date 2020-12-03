@@ -5,8 +5,8 @@ import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
 @injectable()
-export default class FakeMailProvider implements IMailProvider {
-    private cliente: Transporter;
+export default class EtherealMailProvider implements IMailProvider {
+    private client: Transporter;
     
     constructor (
         @inject('MailTemplateProvider')
@@ -23,12 +23,12 @@ export default class FakeMailProvider implements IMailProvider {
                 }
             });
 
-            this.cliente = transporter;
+            this.client = transporter;
         })
     }
 
     public async sendEmail({ to, from, subject, templateData }: ISendMailDTO): Promise<void> {
-        const message = await this.cliente.sendMail({
+        const message = await this.client.sendMail({
             from: {
                 name: from?.name || 'GoBarberTeam',
                 address: from?.email || 'team@gobarber.com.br'
