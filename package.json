@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@types/redis": "^2.8.28",
     "D": "^1.0.0",
     "aws-sdk": "^2.802.0",
     "bcryptjs": "^2.4.3",
@@ -30,6 +31,8 @@
     "multer": "^1.4.2",
     "nodemailer": "^6.4.16",
     "pg": "^8.4.1",
+    "rate-limiter-flexible": "^2.1.13",
+    "redis": "^3.0.2",
     "reflect-metadata": "^0.1.13",
     "ts-jest": "^26.4.4",
     "tsyringe": "^4.4.0",
