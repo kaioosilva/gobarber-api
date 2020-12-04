@@ -8,6 +8,8 @@ import Appointment from '@modules/appointments/infra/typeorm/entities/Appointmen
 import IAppointmentRepository from '@modules/appointments/repositories/iAppointmentsRepository';
 import InotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+
 interface IRequestDTO {
     provider_id: string,
     user_id: string;
@@ -23,6 +25,9 @@ class CreateAppointmentService {
 
         @inject('NotificationsRepository')
         private notificationsRepository: InotificationsRepository,
+
+        @inject('CacheProvider')
+        private cacheProvider: ICacheProvider,
     ) {}
 
     public async execute({ provider_id, date, user_id }:IRequestDTO): Promise<Appointment> {
@@ -59,6 +64,13 @@ class CreateAppointmentService {
             recipient_id: provider_id,
             content: `New appointment to ${dateFormatted}`,
         })
+
+        await this.cacheProvider.invalidate(
+            `provider-appointments:${provider_id}:${format(
+                appointmentDate,
+                'yyyy-M-d',
+            )}`,
+        );
 
         return appointment;
     }
