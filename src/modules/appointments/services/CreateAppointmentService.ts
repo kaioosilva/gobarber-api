@@ -46,7 +46,10 @@ class CreateAppointmentService {
             throw new AppError("You can only create appointments between 8am and 5pm");
         }
 
-        const findAppointmentInSameTime = await this.appointmentRepository.findByDate(appointmentDate);
+        const findAppointmentInSameTime = await this.appointmentRepository.findByDate(
+            appointmentDate,
+            provider_id,
+        );
 
         if(findAppointmentInSameTime) {
             throw new AppError('This time is alredy booked');
