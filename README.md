@@ -1,69 +1,131 @@
-# Recuperação de senha
+<h1 align="center">
+  <img alt="Logo" src="https://res.cloudinary.com/eliasgcf/image/upload/v1588625369/GoBarber/logo_iw1v9f.svg" width="200px">
+</h1>
 
-**RF**
+<h3 align="center">
+  Express Application for GoBarber project
+</h3>
 
-- O usuário deve poder recuperar sua senha informando o seu e-mail;
-- O usuário deve receber um e-mail com instruções de recuperação de senha;
-- O usuário deve poder resetar sua senha;
+<p align="center">The best way to schedule your service!</p>
 
-**RNF**
+<p align="center">
+  <a href="#%EF%B8%8F-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-how-to-contribute">How to contribute</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-license">License</a>
+</p>
 
-- Utilizar Mailtrap para testar envios em ambientes de dev;
-- Utilizar Amazon SES para envios em produção;
-- O envio de e-mails deve acontecer em segundo plano (Background job);
+## 💇🏻‍♂️ About the project
 
-**RN**
+This api provides everything needed to organize appointments between the barbers and customers.
 
-- O link enviado por email para resetar senha, deve expirar em 2h;
-- O usuário precisa confirmar a nova senha ao resetar sua senha;
+Customers can choose the best time available to them.
 
-# Atualização do perfil
+Providers can see all their appointments, manage the times, also see if one client canceled the schedule.
 
-**RF**
+To see the **web client**, click here: [GoBarber Web](https://github.com/kaioosilva/gobarber-web)<br />
+To see the **mobile client**, click here: [GoBarber Mobile](https://github.com/kaioosilva/AppGoBarber)
 
-- O usuário deve poder atualizar seu nome, email e senha;
+## 🚀 Technologies
 
-**RN**
+Technologies that I used to develop this api
 
-- O usuário não pode alterar seu email para um email já utilizado;
-- Para atualizar sua senha, o usuário deve informar a senha antiga;
-- Para atualizar sua senha, o usuário precisa confirmar a nova senha;
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/pt-br/)
+- [Multer](https://github.com/expressjs/multer)
+- [TypeORM](https://typeorm.io/#/)
+- [JWT-token](https://jwt.io/)
+- [uuid v4](https://github.com/thenativeweb/uuidv4/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Date-fns](https://date-fns.org/)
+- [Jest](https://jestjs.io/)
+- [Prettier](https://prettier.io/)
+- [EditorConfig](https://editorconfig.org/)
 
-# Painel do prestador
+## 💻 Getting started
 
-**RF**
+Import the `Insomnia.json` on Insomnia App
 
-- O usuário deve poder listar seus agendamentos de um dia específico;
-- O prestador deve receber uma notificação sempre que houver um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
+### Requirements
 
-**RNF**
+- [Node.js](https://nodejs.org/en/)
+- [Yarn](https://classic.yarnpkg.com/) or [npm](https://www.npmjs.com/)
+- One instance of [PostgreSQL](https://www.postgresql.org/)
 
-- Os agendamentos do prestador no dia devem ser armazenados em cache;
-- As notificações do prestador devem ser armazenadas no mongoDB;
-- As notificações do prestador devem ser enviadas em tempo-teal utilizando Socket.io;
+> Obs.: I recommend use docker
 
-**RN**
+**Clone the project and access the folder**
 
-- A notificação deve ter um status de lida ou não-lida para que o prestador possa controlar;
+```bash
+$ git clone https://github.com/kaioosilva/iniciando-back-end/.git && cd iniciando-back-end
+```
 
-# Agendamento de serviços
+**Follow the steps below**
 
-**RF**
+```bash
+# Install the dependencies
+$ yarn
 
-- O usuário deve poder listar todos prestadores de serviço cadastrados;
-- O usuário deve poder listar os dias de um mês com pelo menos um horário disponivel de um prestador;
-- O usuário deve poder listar horários disponiveis em um dia específico de um prestador;
-- O usuário deve poder realizar um novo agendamento com um prestador;
+# Make a copy of '.env.example' to '.env'
+# and set with YOUR environment variables.
+# The aws variables do not need to be filled for dev environment
+$ cp .env.example .env
 
-**RNF**
+# Create the instance of postgreSQL using docker
+$ docker run --name gostack_gobarber -e POSTGRES_USER=postgres \
+              -e POSTGRES_DB=gostack_gobarber -e POSTGRES_PASSWORD=docker \
+              -p 5432:5432 -d postgres
 
-- A listagem de prestadores deve ser armazenada em cache;
+# Create the instance of mongoDB using docker
+$ docker run --name mongodb -p 27017:27017 -d -t mongo
 
-**RN**
+# Create the instance of redis using docker
+$ docker run --name redis -p 6379:6379 -d -t redis:alpine
 
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponíveis entre 8h às 18h (Primeiro às 8h, úlitmo às 17h);
-- O usuário não pode agendar em um horário já ocupado;
-- O usuário não pode agendar em um horário que já passou;
-- O usuário não pode agendar serviços consigo mesmo;
+# Once the services are running, run the migrations
+$ yarn typeorm migration:run
+
+# To finish, run the api service
+$ yarn dev:server
+
+# Well done, project is started!
+```
+
+## 🤔 How to contribute
+
+**Make a fork of this repository**
+
+```bash
+# Fork using GitHub official command line
+# If you don't have the GitHub CLI, use the web site to do that.
+
+$ gh repo fork kaioosilva/iniciando-back-end
+```
+
+**Follow the steps below**
+
+```bash
+# Clone your fork
+$ git clone your-fork-url && cd iniciando-back-end
+
+# Create a branch with your feature
+$ git checkout -b my-feature
+
+# Make the commit with your changes
+$ git commit -m 'feat: My new feature'
+
+# Send the code to your remote branch
+$ git push origin my-feature
+```
+
+After your pull request is merged, you can delete your branch
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Made with 💜 &nbsp;by Kaio Silva 👋 &nbsp;[See my linkedin](https://www.linkedin.com/in/kaio-oliveira-silva-54275b57/)
