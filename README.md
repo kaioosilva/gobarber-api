@@ -74,15 +74,15 @@ $ yarn
 $ cp .env.example .env
 
 # Create the instance of postgreSQL using docker
-$ docker run --name gobarber-postgres -e POSTGRES_USER=docker \
-              -e POSTGRES_DB=gobarber -e POSTGRES_PASSWORD=docker \
+$ docker run --name gostack_gobarber -e POSTGRES_USER=postgres \
+              -e POSTGRES_DB=gostack_gobarber -e POSTGRES_PASSWORD=docker \
               -p 5432:5432 -d postgres
 
 # Create the instance of mongoDB using docker
-$ docker run --name gobarber-mongodb -p 27017:27017 -d -t mongo
+$ docker run --name mongodb -p 27017:27017 -d -t mongo
 
 # Create the instance of redis using docker
-$ docker run --name gobarber-redis -p 6379:6379 -d -t redis:alpine
+$ docker run --name redis -p 6379:6379 -d -t redis:alpine
 
 # Once the services are running, run the migrations
 $ yarn typeorm migration:run
