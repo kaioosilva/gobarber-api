@@ -1,22 +1,48 @@
+// {
+//   "compilerOptions": {
+//     "target": "es5",                          
+//     "module": "commonjs",
+//     "outDir": "./dist",                       
+//     "rootDir": "./src",
+//     "strict": true,
+// 		"strictPropertyInitialization": false,
+//     "baseUrl": "./src",
+//     "allowJs": true,                   
+//     "paths": {
+//       "@modules/*": ["modules/*"],
+//       "@config/*": ["config/*"],
+//       "@shared/*": ["shared/*"]
+//     },
+//     "esModuleInterop": true,
+//     "experimentalDecorators": true,           
+//     "emitDecoratorMetadata": true,
+//     "skipLibCheck": true,                     
+//     "forceConsistentCasingInFileNames": true  
+//   }
+// }
+
 {
   "compilerOptions": {
-    "target": "es5",                          
+    "target": "es2017",
     "module": "commonjs",
-    "outDir": "./dist",                       
+    "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
-		"strictPropertyInitialization": false,
+    "strictPropertyInitialization": false,
     "baseUrl": "./src",
-    "allowJs": true,                   
+    "allowJs": true,
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"]
     },
     "esModuleInterop": true,
-    "experimentalDecorators": true,           
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true  
-  }
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
